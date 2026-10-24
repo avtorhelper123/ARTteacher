@@ -121,6 +121,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+(function(){
 /* Supabase account + cross-device progress sync. Publishable key is intended for browser use;
    table access is restricted by the SQL RLS policies documented for this project. */
 const SUPABASE_URL="https://ltvrorqeajgbwoswrtcu.supabase.co";
@@ -139,7 +140,8 @@ async function initCloudAccount(){if(!window.supabase?.createClient){authStatus(
 /* Observe progress writes so XP, learned words and streak changes are synced automatically. */
 const nativeLocalStorageSetItem=Storage.prototype.setItem;
 Storage.prototype.setItem=function(key,value){nativeLocalStorageSetItem.call(this,key,value);if(this===localStorage&&CLOUD_PROGRESS_KEYS.includes(String(key)))scheduleCloudSync()};
-document.addEventListener("DOMContentLoaded",()=>initCloudAccount());
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",()=>initCloudAccount(),{once:true});}else{initCloudAccount();}
+})();
 </script>
 <script>
 
