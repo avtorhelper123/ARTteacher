@@ -87,6 +87,42 @@ body{position:relative;isolation:isolate}
 </head>
 <body>
 <div class="world-backdrop" aria-hidden="true"><div class="world-stars"></div><div class="world-globe"><div class="world-orbit"></div></div><span class="world-flag f1">🇫🇷</span><span class="world-flag f2">🇯🇵</span><span class="world-flag f3">🇧🇷</span><span class="world-flag f4">🇬🇧</span><span class="world-landmark l1">🗼</span><span class="world-landmark l2">🗽</span><span class="world-landmark l3">🏯</span></div>
+<section id="registrationRescue" style="display:block!important;visibility:visible!important;position:relative;z-index:9999;margin:18px auto;padding:18px;max-width:1060px;border:2px solid #8b70e5;border-radius:20px;background:#fff;color:#241b35;box-shadow:0 8px 30px #49316b22">
+<h2 style="margin:0 0 8px">☁️ Регистрация и вход</h2>
+<p style="margin:0 0 12px">Создай аккаунт, чтобы синхронизировать учебный прогресс между устройствами.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px">
+<input id="rescueEmail" type="email" autocomplete="email" placeholder="Электронная почта" style="padding:12px;border:1px solid #d9d0e8;border-radius:10px;color:#241b35;background:white">
+<input id="rescuePassword" type="password" autocomplete="new-password" placeholder="Пароль (минимум 8 символов)" style="padding:12px;border:1px solid #d9d0e8;border-radius:10px;color:#241b35;background:white">
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+<button id="rescueRegister" type="button" style="padding:11px 15px;border-radius:10px;background:#8064d9;color:white;font-weight:700">Создать аккаунт</button>
+<button id="rescueLogin" type="button" style="padding:11px 15px;border-radius:10px;background:#f0e9ff;color:#6047ae;font-weight:700">Войти</button>
+</div><p id="rescueStatus" role="status" style="margin:10px 0 0">Готово к регистрации.</p></section>
+<script>
+(function(){
+function initRescue(){
+ const status=document.getElementById('rescueStatus');
+ const setStatus=(t)=>{if(status)status.textContent=t};
+ if(!window.supabase||!window.supabase.createClient){setStatus('Модуль регистрации не загрузился. Проверь интернет и обнови страницу.');return}
+ const client=window.supabase.createClient('https://ltvrorqeajgbwoswrtcu.supabase.co','sb_publishable_h251o80w1Bit9uwm-QeU4A_lI5vvO2f');
+ async function act(kind){
+  const email=document.getElementById('rescueEmail').value.trim(),password=document.getElementById('rescuePassword').value;
+  if(!email||!password){setStatus('Введи электронную почту и пароль.');return}
+  if(password.length<8){setStatus('Пароль должен содержать минимум 8 символов.');return}
+  setStatus('Подключаемся…');
+  try{
+   const r=kind==='register'?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});
+   if(r.error)throw r.error;
+   if(kind==='register'&&!r.data.session)setStatus('Аккаунт создан. Проверь почту и подтверди адрес, затем войди.');
+   else setStatus('Вход выполнен: '+(r.data.user?.email||email));
+  }catch(e){setStatus(e.message||'Не удалось выполнить запрос.')}
+ }
+ document.getElementById('rescueRegister').addEventListener('click',()=>act('register'));
+ document.getElementById('rescueLogin').addEventListener('click',()=>act('login'));
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initRescue,{once:true});else initRescue();
+})();
+</script>
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
 
