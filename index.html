@@ -61,9 +61,32 @@
 @media(max-width:520px){.learning-dashboard{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.dash-item{padding:10px 8px}.dash-item .dash-value{font-size:1.1rem}.dash-item small{font-size:.72rem}}
 
 .auth-card{margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 8px 24px #3d23500a}.auth-card h2{margin:0 0 6px;font-size:1.2rem}.auth-card p{margin:5px 0 12px;color:var(--muted);font-size:.93rem}.auth-fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}.auth-fields input{width:100%;min-width:0;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}.auth-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.auth-btn{border-radius:12px;padding:10px 14px;background:#8064d9;color:#fff;font-weight:750}.auth-btn.secondary{background:#f0e9ff;color:#6a51bd}.auth-btn:disabled{opacity:.6}.auth-status{font-size:.9rem;margin-top:10px;color:var(--muted);overflow-wrap:anywhere}.auth-status.good{color:#16784a}.auth-status.bad{color:#b42318}.auth-account{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.auth-email{font-weight:750;overflow-wrap:anywhere}@media(max-width:520px){.auth-fields{grid-template-columns:1fr}}
+
+/* Animated world-travel background */
+body{position:relative;isolation:isolate}
+.world-backdrop{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 75% 35%,#dceeff66 0,transparent 42%),radial-gradient(ellipse at 15% 80%,#f2dfff55 0,transparent 40%)}
+.world-globe{position:absolute;width:min(72vw,650px);aspect-ratio:1;right:-10%;top:10%;border-radius:50%;opacity:.23;filter:saturate(1.15);box-shadow:inset -35px -20px 70px #101b4e55,0 0 70px #7aaeff55;animation:globeFloat 12s ease-in-out infinite}
+.world-globe:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff9 0,transparent 12%),radial-gradient(circle at 35% 35%,#69d9a0 0 8%,transparent 9%),radial-gradient(ellipse at 55% 26%,#5fd4a2 0 10%,transparent 11%),radial-gradient(ellipse at 65% 48%,#6acb92 0 13%,transparent 14%),radial-gradient(ellipse at 35% 62%,#5acb9a 0 11%,transparent 12%),radial-gradient(circle at 50% 50%,#5bb9ff,#1656a7 64%,#10265f 78%,#061333 100%);box-shadow:inset -28px -18px 50px #06112d99,inset 8px 8px 25px #d8f5ff77}
+.world-globe:after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(90deg,transparent 0 23%,#b9edff55 24%,transparent 25% 48%);animation:earthSpin 18s linear infinite;mask-image:radial-gradient(circle,#000 58%,transparent 70%)}
+.world-orbit{position:absolute;width:120%;height:30%;left:-10%;top:36%;border:2px solid #65bfff88;border-radius:50%;transform:rotate(-25deg);box-shadow:0 0 18px #60baff66;animation:orbitSpin 14s linear infinite}
+.world-flag{position:absolute;font-size:clamp(22px,3vw,38px);filter:drop-shadow(0 4px 7px #455a8066);animation:flagDrift 6s ease-in-out infinite}
+.world-flag.f1{top:13%;left:13%}.world-flag.f2{top:28%;right:15%;animation-delay:-2s}.world-flag.f3{bottom:19%;left:25%;animation-delay:-3s}.world-flag.f4{bottom:12%;right:22%;animation-delay:-1s}.world-landmark{position:absolute;font-size:clamp(28px,4vw,48px);opacity:.72;animation:landmarkFloat 7s ease-in-out infinite}
+.world-landmark.l1{top:17%;right:27%}.world-landmark.l2{top:51%;left:8%;animation-delay:-2s}.world-landmark.l3{bottom:20%;right:8%;animation-delay:-4s}
+.world-stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#a4cfff 1px,transparent 1.5px);background-size:83px 83px,127px 127px;background-position:0 0,32px 48px;opacity:.28;animation:starsMove 35s linear infinite}
+@keyframes earthSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes orbitSpin{from{transform:rotate(-25deg)}to{transform:rotate(335deg)}}
+@keyframes globeFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}}
+@keyframes flagDrift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(8deg)}}
+@keyframes landmarkFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.06)}}
+@keyframes starsMove{from{background-position:0 0,32px 48px}to{background-position:83px 166px,159px 302px}}
+.wrap{position:relative;z-index:0}
+@media(max-width:600px){.world-globe{width:95vw;right:-38%;top:19%;opacity:.16}.world-landmark{opacity:.48}.world-flag{opacity:.72}}
+@media(prefers-reduced-motion:reduce){.world-globe,.world-globe:after,.world-orbit,.world-flag,.world-landmark,.world-stars{animation:none!important}}
+
 </style>
 </head>
 <body>
+<div class="world-backdrop" aria-hidden="true"><div class="world-stars"></div><div class="world-globe"><div class="world-orbit"></div></div><span class="world-flag f1">🇫🇷</span><span class="world-flag f2">🇯🇵</span><span class="world-flag f3">🇧🇷</span><span class="world-flag f4">🇬🇧</span><span class="world-landmark l1">🗼</span><span class="world-landmark l2">🗽</span><span class="world-landmark l3">🏯</span></div>
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
 
