@@ -8,11 +8,37 @@
 <style>
 :root{--ink:#29213a;--muted:#776c89;--pink:#f3b6df;--purple:#8064d9;--line:#eee5f6;--paper:#fff;--bg:#fcf8ff}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:1100px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:10px;font-size:1.25rem;font-weight:850}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#f7c4e8,#a58cf0);color:white;font-weight:900}.pill{background:#f0e9ff;border-radius:99px;padding:8px 13px;color:#6a51bd;font-size:.85rem;font-weight:700}.hero{margin:28px 0;padding:clamp(24px,5vw,52px);border-radius:30px;background:linear-gradient(115deg,#f9dff0,#eee5ff 65%,#dcecff);position:relative;overflow:hidden}.hero:after{content:"あ";position:absolute;right:7%;top:8%;font-size:clamp(90px,18vw,180px);font-weight:900;color:#fff8;transform:rotate(9deg)}.hero>*{position:relative;z-index:1}.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#7659bd;font-weight:800}.hero h1{font-size:clamp(2rem,6vw,3.8rem);line-height:1.04;max-width:650px;margin:12px 0}.hero p{max-width:560px;color:#5e526f}.cta{background:var(--ink);color:white;padding:13px 19px;border-radius:14px;font-weight:750;margin-top:8px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.stat{background:#ffffffa8;border:1px solid #fff;padding:10px 14px;border-radius:14px;font-size:.9rem}.stat b{font-size:1.1rem}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:30px 0 15px}.section-head h2{margin:0;font-size:1.5rem}.section-head p{margin:4px 0 0;color:var(--muted);font-size:.9rem}.search{width:100%;max-width:320px;border:1px solid var(--line);background:white;border-radius:13px;padding:12px 14px;outline-color:var(--purple)}.languages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.lang{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 5px 20px #49316b08;transition:.18s}.lang:hover{transform:translateY(-3px);box-shadow:0 10px 26px #49316b12}.lang-top{display:flex;align-items:center;gap:12px}.flag{font-size:2rem;width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:#f8f0ff}.lang h3{margin:0;font-size:1.05rem}.lang small{color:var(--muted)}.lang p{font-size:.88rem;color:var(--muted);min-height:42px}.progress{height:7px;border-radius:99px;background:#f0ebf5;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#f2a9d7,#8b70e5);width:0}.lang-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:13px;font-size:.82rem;color:var(--muted)}.start{background:#f2eaff;color:#694ec0;padding:9px 12px;border-radius:11px;font-weight:750}.lesson{margin-top:28px;padding:24px;background:white;border:1px solid var(--line);border-radius:24px}.lesson h2{margin-top:0}.word{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:850;margin:12px 0 2px}.trans{color:var(--muted)}.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:18px}.answer{background:#faf7ff;border:1px solid #e8ddfa;padding:13px;border-radius:13px;color:var(--ink)}.answer:focus,.answer:hover{border-color:var(--purple)}.feedback{min-height:25px;margin-top:12px;font-weight:750}.foot{text-align:center;color:var(--muted);padding:30px 10px;font-size:.85rem}.hidden{display:none!important}@media(max-width:600px){.wrap{padding:15px}.section-head{align-items:stretch;flex-direction:column}.search{max-width:none}.hero{border-radius:23px}.hero:after{right:-5%;top:30%}}
+
+.streak-card{padding:18px;margin:16px 0;border-radius:20px;background:linear-gradient(135deg,#fff2df,#ffe1c2);color:#663817;box-shadow:0 5px 18px #0000000d}
+.streak-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.streak-label{font-size:12px;font-weight:800;letter-spacing:1px;opacity:.7}
+.streak-number{font-size:32px;font-weight:900}
+.streak-days{font-size:14px;font-weight:600}
+.streak-record{font-size:13px;text-align:right}
+.streak-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-top:16px}
+.streak-day{min-width:0;padding:8px 2px;border:2px solid transparent;border-radius:12px;background:#ffffffa8;text-align:center}
+.streak-day.today{border-color:#f28b28;background:#fff}
+.streak-day.completed{background:#ffd18f}
+.streak-day .day-name{font-size:11px;opacity:.75}
+.streak-day .day-icon{margin-top:5px;font-size:18px}
+.streak-message{margin-top:12px;font-size:13px;font-weight:600}
+@media(max-width:380px){.streak-card{padding:13px}.streak-calendar{gap:4px}.streak-day{padding:7px 1px}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
+
+<section class="streak-card" aria-label="Серия занятий">
+  <div class="streak-header">
+    <div><div class="streak-label">ТВОЯ СЕРИЯ</div><div class="streak-number">🔥 <span id="streakCurrent">0</span> <span class="streak-days">дн.</span></div></div>
+    <div class="streak-record">Рекорд: <strong id="streakBest">0</strong> 🔥</div>
+  </div>
+  <div class="streak-calendar" id="streakCalendar" aria-label="Занятия за последние семь дней"></div>
+  <div class="streak-message" id="streakMessage">Выполни первое задание сегодня!</div>
+</section>
+
 <section class="hero"><div class="eyebrow">Твоя языковая студия</div><h1>Новый язык.<br>Новые возможности.</h1><p>Выбирай язык, изучай полезные слова и проверяй себя в коротких интерактивных заданиях. Учись в своём темпе.</p><button class="cta" onclick="document.querySelector('#languages-title').scrollIntoView({behavior:'smooth'})">Выбрать язык ↓</button><div class="stats"><div class="stat">🌍 <b>12</b> языков</div><div class="stat">🧠 <b id="learned">0</b> правильных ответов</div><div class="stat">📚 <b id="streak">0</b> слов в прогрессе</div></div></section>
 <div class="section-head" id="languages-title"><div><h2>Выбери язык</h2><p>Начни с базовых слов и фраз</p></div><input id="search" class="search" placeholder="🔎 Найти язык..." aria-label="Найти язык"></div>
 <div class="languages" id="languages"></div>
@@ -20,6 +46,73 @@
 <footer class="foot">ARTteacher · Твой путь к новым языкам 💜<br>Прогресс хранится локально в этом браузере на устройстве.</footer>
 </div>
 <script>
+
+const STREAK_CONFIG={MIN_WORDS:5,STORAGE_KEY:"artteacher_streak_v1"};
+function streakDateKey(date=new Date()){
+  return date.getFullYear()+"-"+String(date.getMonth()+1).padStart(2,"0")+"-"+String(date.getDate()).padStart(2,"0");
+}
+function shiftStreakDate(key,offset){
+  const [y,m,d]=key.split("-").map(Number);
+  const date=new Date(Date.UTC(y,m-1,d+offset));
+  return date.getUTCFullYear()+"-"+String(date.getUTCMonth()+1).padStart(2,"0")+"-"+String(date.getUTCDate()).padStart(2,"0");
+}
+function readStreak(){
+  try{
+    const s=JSON.parse(localStorage.getItem(STREAK_CONFIG.STORAGE_KEY)||"null");
+    if(s&&Number.isInteger(s.current)&&Number.isInteger(s.best)&&Array.isArray(s.activityDates)){
+      s.current=Math.max(0,s.current);s.best=Math.max(s.current,s.best,0);
+      s.activityDates=s.activityDates.filter(d=>typeof d==="string"&&/^\\d{4}-\\d{2}-\\d{2}$/.test(d));
+      return s;
+    }
+  }catch(e){console.warn("Не удалось прочитать серию занятий",e);}
+  return {current:0,best:0,lastActivityDate:null,activityDates:[]};
+}
+let streakData=readStreak();
+function saveStreak(){
+  try{localStorage.setItem(STREAK_CONFIG.STORAGE_KEY,JSON.stringify(streakData));}
+  catch(e){console.warn("Не удалось сохранить серию занятий",e);}
+}
+function normalizeStreak(){
+  const today=streakDateKey(),yesterday=shiftStreakDate(today,-1),last=streakData.lastActivityDate;
+  if(last!==today&&last!==yesterday)streakData.current=0;
+  if(last&&last>today){streakData.current=0;streakData.lastActivityDate=null;}
+  streakData.activityDates=[...new Set(streakData.activityDates.filter(d=>d<=today))].sort();
+  streakData.best=Math.max(streakData.best,streakData.current);
+  saveStreak();
+}
+function recordStudyActivity({tasks=0,words=0}={}){
+  if(tasks<1&&words<STREAK_CONFIG.MIN_WORDS)return false;
+  const today=streakDateKey();
+  if(streakData.lastActivityDate===today){renderStreak();return false;}
+  const yesterday=shiftStreakDate(today,-1);
+  streakData.current=streakData.lastActivityDate===yesterday?streakData.current+1:1;
+  streakData.lastActivityDate=today;
+  streakData.best=Math.max(streakData.best,streakData.current);
+  if(!streakData.activityDates.includes(today))streakData.activityDates.push(today);
+  saveStreak();renderStreak();return true;
+}
+function renderStreak(){
+  normalizeStreak();
+  const currentEl=document.getElementById("streakCurrent"),bestEl=document.getElementById("streakBest");
+  const calendarEl=document.getElementById("streakCalendar"),messageEl=document.getElementById("streakMessage");
+  if(!currentEl||!bestEl||!calendarEl||!messageEl)return;
+  currentEl.textContent=streakData.current;bestEl.textContent=streakData.best;
+  const today=streakDateKey(),names=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+  calendarEl.replaceChildren();
+  for(let i=6;i>=0;i--){
+    const key=shiftStreakDate(today,-i),done=streakData.activityDates.includes(key);
+    const [y,m,d]=key.split("-").map(Number),date=new Date(y,m-1,d);
+    const cell=document.createElement("div");
+    cell.className="streak-day"+(i===0?" today":"")+(done?" completed":"");
+    cell.innerHTML='<div class="day-name">'+names[date.getDay()]+'</div><div class="day-icon">'+(done?"🔥":"·")+'</div>';
+    cell.title=key+(done?" — занятие было":" — занятия не отмечены");
+    calendarEl.appendChild(cell);
+  }
+  if(streakData.lastActivityDate===today)messageEl.textContent="Отлично! Сегодняшний день засчитан 🔥";
+  else if(streakData.current>0)messageEl.textContent="Продолжай сегодня, чтобы сохранить серию!";
+  else messageEl.textContent="Выполни одно задание, чтобы начать серию!";
+}
+
 const langs=[
 {code:'en',flag:'🇬🇧',name:'Английский',native:'English',level:'Начальный',desc:'Повседневные слова и полезные выражения.',words:[['hello','привет',['пока','спасибо','пожалуйста']],['thank you','спасибо',['извините','привет','до завтра']],['water','вода',['хлеб','дом','книга']],['good morning','доброе утро',['спокойной ночи','до свидания','пожалуйста']]]},
 {code:'es',flag:'🇪🇸',name:'Испанский',native:'Español',level:'Начальный',desc:'Знакомься с языком путешествий и общения.',words:[['hola','привет',['спасибо','пока','вода']],['gracias','спасибо',['привет','книга','дом']],['agua','вода',['хлеб','день','друг']],['amigo','друг',['семья','город','школа']]]},
@@ -102,8 +195,8 @@ function render(){let filter=$('#search').value.toLowerCase();$('#languages').in
 function start(code){current=langs.find(l=>l.code===code);qIndex=0;$('#quiz').classList.remove('hidden');$('#quizLang').textContent=current.flag+' '+current.name;$('#hskControls').classList.toggle('hidden',code!=='zh');if(code==='zh'){selectedHsk=$('#hskLevel').value;$('#hskNote').textContent='HSK 3: '+hsk3Words.length+' слов из твоего списка. Другие уровни пока не заполнены.';}$('#lesson').scrollIntoView({behavior:'smooth',block:'start'});nextQuestion()}
 function changeHsk(level){selectedHsk=level;qIndex=0;if(level==='3'){$('#hskNote').textContent='HSK 3: '+hsk3Words.length+' слов из твоего списка.';nextQuestion()}else{$('#hskNote').textContent='Словарь HSK '+level+' пока не добавлен. Сейчас доступен предоставленный список HSK 3.';$('#word').textContent='HSK '+level;$('#hint').textContent='Словарь этого уровня ещё не заполнен.';$('#answers').innerHTML='';$('#feedback').textContent='Выбери HSK 3, чтобы заниматься по добавленным словам.';$('#feedback').style.color='var(--muted)'}}
 function nextQuestion(){if(current.code==='zh'&&selectedHsk!=='3'){return}let bank=current.code==='zh'?hsk3Words:current.words;let w=bank[qIndex%bank.length];$('#word').textContent=w[0];$('#hint').textContent='Выбери перевод';$('#feedback').textContent='';let opts=[w[1],...w[2].slice(0,3)].sort(()=>Math.random()-.5);$('#answers').innerHTML=opts.map(a=>'<button class="answer" onclick="answer('+JSON.stringify(a).replace(/"/g,'&quot;')+')">'+a+'</button>').join('');}
-function answer(a){let bank=current.code==='zh'?hsk3Words:current.words;let w=bank[qIndex%bank.length];if(a===w[1]){let key=current.code+':'+w[0];if(!learned.includes(key)){learned.push(key);localStorage.setItem('art_learned',JSON.stringify(learned))}correct++;localStorage.setItem('art_correct',String(correct));$('#feedback').textContent='Верно! Отличная работа ✨';$('#feedback').style.color='#36865a'}else{$('#feedback').textContent='Почти! Правильный ответ: '+w[1];$('#feedback').style.color='#b45a8a'}qIndex++;render();$('#answers').querySelectorAll('button').forEach(b=>b.disabled=true)}
-$('#search').addEventListener('input',render);render();
+function answer(a){let bank=current.code==='zh'?hsk3Words:current.words;let w=bank[qIndex%bank.length];recordStudyActivity({tasks:1});if(a===w[1]){let key=current.code+':'+w[0];if(!learned.includes(key)){learned.push(key);localStorage.setItem('art_learned',JSON.stringify(learned))}correct++;localStorage.setItem('art_correct',String(correct));$('#feedback').textContent='Верно! Отличная работа ✨';$('#feedback').style.color='#36865a'}else{$('#feedback').textContent='Почти! Правильный ответ: '+w[1];$('#feedback').style.color='#b45a8a'}qIndex++;render();$('#answers').querySelectorAll('button').forEach(b=>b.disabled=true)}
+$('#search').addEventListener('input',render);render();renderStreak();
 </script>
 </body>
 </html>
