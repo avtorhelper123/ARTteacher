@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7e8ff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ARTteacher">
 <title>ARTteacher — учи языки в своём ритме</title>
 <style>
 :root{--ink:#29213a;--muted:#776c89;--pink:#f3b6df;--purple:#8064d9;--line:#eee5f6;--paper:#fff;--bg:#fcf8ff}
@@ -24,6 +29,21 @@
 .streak-message{margin-top:12px;font-size:13px;font-weight:600}
 @media(max-width:380px){.streak-card{padding:13px}.streak-calendar{gap:4px}.streak-day{padding:7px 1px}}
 
+
+/* App installation */
+.install-section{margin:22px 0;padding:22px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#fff,#f8efff)}
+.install-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.install-card{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.install-card h3{margin:8px 0 5px;font-size:1.05rem}
+.install-card p{margin:0 0 12px;color:var(--muted);font-size:.92rem}
+.install-icon{font-size:28px}
+.install-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 15px;border-radius:12px;background:linear-gradient(135deg,#a98ae8,#e7a6d2);color:#fff;font-weight:800}
+.install-btn.secondary{background:#f4edfb;color:#5b438e}
+.install-status{margin-top:12px;font-size:.88rem;color:var(--muted)}
+.install-steps{padding-left:20px;margin:8px 0 0;color:var(--muted);font-size:.9rem}
+.native-note{margin-top:14px;padding:12px 14px;border-radius:14px;background:#fff6e9;color:#79502d;font-size:.88rem}
+@media(max-width:620px){.install-grid{grid-template-columns:1fr}.install-section{padding:16px}}
+
 </style>
 </head>
 <body>
@@ -39,6 +59,35 @@
   <div class="streak-message" id="streakMessage">Выполни первое задание сегодня!</div>
 </section>
 
+
+<section class="install-section" id="installApp">
+  <div class="eyebrow">📲 Установка на устройство</div>
+  <h2>ARTteacher всегда под рукой</h2>
+  <p>Добавь приложение на главный экран и запускай его как обычное приложение. Твой прогресс хранится в этом браузере на устройстве.</p>
+  <div class="install-grid">
+    <article class="install-card">
+      <div class="install-icon">🤖</div>
+      <h3>Android</h3>
+      <p>Установка веб-приложения на главный экран — без Play Маркета и без отдельного APK.</p>
+      <button class="install-btn" id="androidInstallBtn" type="button">Установить на Android</button>
+      <div class="install-status" id="androidInstallStatus">Если кнопка не сработает, открой меню браузера ⋮ и выбери «Установить приложение» или «Добавить на главный экран».</div>
+    </article>
+    <article class="install-card">
+      <div class="install-icon">🍎</div>
+      <h3>iPhone / iPad</h3>
+      <p>Добавь ARTteacher на главный экран через Safari.</p>
+      <ol class="install-steps">
+        <li>Открой эту страницу в Safari.</li>
+        <li>Нажми «Поделиться».</li>
+        <li>Выбери «На экран Домой», затем «Добавить».</li>
+      </ol>
+      <button class="install-btn secondary" id="iosHelpBtn" type="button">Показать инструкцию</button>
+      <div class="install-status" id="iosInstallStatus" hidden>В Safari нажми значок «Поделиться» (квадрат со стрелкой вверх) → «На экран Домой» → «Добавить».</div>
+    </article>
+  </div>
+  <div class="native-note"><b>Про APK и IPA:</b> отдельные установочные файлы ещё не собраны. Эта версия устанавливается как веб-приложение (PWA). Для настоящего APK нужна Android-сборка, а IPA для iPhone дополнительно требует корректной подписи и способа распространения — кнопки загрузки файлов появятся, когда эти сборки будут готовы.</div>
+</section>
+
 <section class="hero"><div class="eyebrow">Твоя языковая студия</div><h1>Новый язык.<br>Новые возможности.</h1><p>Выбирай язык, изучай полезные слова и проверяй себя в коротких интерактивных заданиях. Учись в своём темпе.</p><button class="cta" onclick="document.querySelector('#languages-title').scrollIntoView({behavior:'smooth'})">Выбрать язык ↓</button><div class="stats"><div class="stat">🌍 <b>12</b> языков</div><div class="stat">🧠 <b id="learned">0</b> правильных ответов</div><div class="stat">📚 <b id="streak">0</b> слов в прогрессе</div></div></section>
 <div class="section-head" id="languages-title"><div><h2>Выбери язык</h2><p>Начни с базовых слов и фраз</p></div><input id="search" class="search" placeholder="🔎 Найти язык..." aria-label="Найти язык"></div>
 <div class="languages" id="languages"></div>
@@ -46,6 +95,43 @@
 <footer class="foot">ARTteacher · Твой путь к новым языкам 💜<br>Прогресс хранится локально в этом браузере на устройстве.</footer>
 </div>
 <script>
+
+let deferredInstallPrompt=null;
+window.addEventListener("beforeinstallprompt",event=>{
+  event.preventDefault();
+  deferredInstallPrompt=event;
+  const btn=document.getElementById("androidInstallBtn");
+  if(btn)btn.textContent="Установить приложение";
+});
+window.addEventListener("appinstalled",()=>{
+  const status=document.getElementById("androidInstallStatus");
+  if(status)status.textContent="ARTteacher установлен! Найди значок на главном экране ✨";
+  deferredInstallPrompt=null;
+});
+document.addEventListener("DOMContentLoaded",()=>{
+  const installBtn=document.getElementById("androidInstallBtn");
+  const status=document.getElementById("androidInstallStatus");
+  if(installBtn)installBtn.addEventListener("click",async()=>{
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      const choice=await deferredInstallPrompt.userChoice;
+      if(status)status.textContent=choice.outcome==="accepted"?"Установка подтверждена. Следуй подсказкам браузера.":"Установку можно запустить позже через меню браузера.";
+      deferredInstallPrompt=null;
+    }else if(status){
+      status.textContent="Браузер не показал системное окно установки. Открой меню браузера ⋮ → «Установить приложение» или «Добавить на главный экран». На iPhone используй Safari → «Поделиться» → «На экран Домой».";
+    }
+  });
+  const iosBtn=document.getElementById("iosHelpBtn");
+  const iosStatus=document.getElementById("iosInstallStatus");
+  if(iosBtn&&iosStatus)iosBtn.addEventListener("click",()=>{
+    iosStatus.hidden=!iosStatus.hidden;
+    iosBtn.textContent=iosStatus.hidden?"Показать инструкцию":"Скрыть инструкцию";
+  });
+  if("serviceWorker" in navigator && location.protocol==="https:"){
+    navigator.serviceWorker.register("./sw.js").catch(err=>console.warn("Service worker не зарегистрирован:",err));
+  }
+});
+
 
 const STREAK_CONFIG={MIN_WORDS:5,STORAGE_KEY:"artteacher_streak_v1"};
 function streakDateKey(date=new Date()){
