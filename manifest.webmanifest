@@ -1,0 +1,20 @@
+{
+  "name": "ARTteacher — учи языки",
+  "short_name": "ARTteacher",
+  "description": "Изучай языки и китайские слова HSK",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fcf8ff",
+  "theme_color": "#f7e8ff",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
