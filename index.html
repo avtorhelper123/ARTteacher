@@ -61,31 +61,26 @@
 
 
 <section class="install-section" id="installApp">
-  <div class="eyebrow">📲 Установка на устройство</div>
-  <h2>ARTteacher всегда под рукой</h2>
-  <p>Добавь приложение на главный экран и запускай его как обычное приложение. Твой прогресс хранится в этом браузере на устройстве.</p>
+  <div class="eyebrow">📲 Скачать приложение</div>
+  <h2>ARTteacher на твоём устройстве</h2>
+  <p>Скачай установочный файл и пользуйся ARTteacher как отдельным приложением.</p>
   <div class="install-grid">
     <article class="install-card">
       <div class="install-icon">🤖</div>
-      <h3>Android</h3>
-      <p>Установка веб-приложения на главный экран — без Play Маркета и без отдельного APK.</p>
-      <button class="install-btn" id="androidInstallBtn" type="button">Установить на Android</button>
-      <div class="install-status" id="androidInstallStatus">Если кнопка не сработает, открой меню браузера ⋮ и выбери «Установить приложение» или «Добавить на главный экран».</div>
+      <h3>Android — APK</h3>
+      <p>Установочный файл для телефонов и планшетов Android.</p>
+      <a class="install-btn" href="https://github.com/avtorhelper123/ARTteacher/releases/latest/download/artteacher.apk">Скачать APK</a>
+      <div class="install-status">После загрузки открой APK. Android может попросить подтвердить установку.</div>
     </article>
     <article class="install-card">
       <div class="install-icon">🍎</div>
-      <h3>iPhone / iPad</h3>
-      <p>Добавь ARTteacher на главный экран через Safari.</p>
-      <ol class="install-steps">
-        <li>Открой эту страницу в Safari.</li>
-        <li>Нажми «Поделиться».</li>
-        <li>Выбери «На экран Домой», затем «Добавить».</li>
-      </ol>
-      <button class="install-btn secondary" id="iosHelpBtn" type="button">Показать инструкцию</button>
-      <div class="install-status" id="iosInstallStatus" hidden>В Safari нажми значок «Поделиться» (квадрат со стрелкой вверх) → «На экран Домой» → «Добавить».</div>
+      <h3>iPhone / iPad — IPA</h3>
+      <p>Сборка для iOS. Файл без подписи нельзя просто открыть как обычное приложение.</p>
+      <a class="install-btn secondary" href="https://github.com/avtorhelper123/ARTteacher/releases/latest/download/artteacher.ipa">Скачать IPA</a>
+      <div class="install-status">Для установки потребуется подходящий способ установки и подпись Apple ID.</div>
     </article>
   </div>
-  <div class="native-note"><b>Про APK и IPA:</b> отдельные установочные файлы ещё не собраны. Эта версия устанавливается как веб-приложение (PWA). Для настоящего APK нужна Android-сборка, а IPA для iPhone дополнительно требует корректной подписи и способа распространения — кнопки загрузки файлов появятся, когда эти сборки будут готовы.</div>
+  <div class="native-note"><b>Важно:</b> ссылки станут доступны после успешного завершения первой сборки в GitHub Actions. APK/IPA создаются автоматически при обновлении сайта или вручную через запуск workflow.</div>
 </section>
 
 <section class="hero"><div class="eyebrow">Твоя языковая студия</div><h1>Новый язык.<br>Новые возможности.</h1><p>Выбирай язык, изучай полезные слова и проверяй себя в коротких интерактивных заданиях. Учись в своём темпе.</p><button class="cta" onclick="document.querySelector('#languages-title').scrollIntoView({behavior:'smooth'})">Выбрать язык ↓</button><div class="stats"><div class="stat">🌍 <b>12</b> языков</div><div class="stat">🧠 <b id="learned">0</b> правильных ответов</div><div class="stat">📚 <b id="streak">0</b> слов в прогрессе</div></div></section>
