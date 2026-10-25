@@ -78,11 +78,48 @@ body{position:relative;isolation:isolate}
 @media(max-width:600px){.world-landmark{opacity:.15}.world-flag{opacity:.2}.world-backdrop:before{filter:blur(30px)}}
 @media(prefers-reduced-motion:reduce){.world-flag,.world-landmark,.world-stars{animation:none!important}}
 
+
+/* ARTteacher cosmic redesign */
+:root{--cosmic-ink:#eef0ff;--cosmic-panel:rgba(10,18,57,.82);--cosmic-border:rgba(151,119,255,.42);--cosmic-glow:#a855f7}
+body{background:radial-gradient(ellipse at 8% 4%,rgba(255,183,226,.68),transparent 29%),radial-gradient(ellipse at 88% 18%,rgba(85,107,255,.46),transparent 32%),linear-gradient(145deg,#111b4a 0%,#080d28 52%,#25104a 100%)!important;color:var(--cosmic-ink)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(2px 2px at 12% 20%,#fff 50%,transparent 70%),radial-gradient(1.5px 1.5px at 68% 13%,#fff 50%,transparent 70%),radial-gradient(2px 2px at 82% 66%,#d9c8ff 50%,transparent 70%),radial-gradient(1px 1px at 37% 78%,#fff 50%,transparent 70%),radial-gradient(1.5px 1.5px at 93% 38%,#fff 50%,transparent 70%);background-size:310px 250px;opacity:.7;animation:cosmicTwinkle 5s ease-in-out infinite alternate}
+.world-backdrop{opacity:.28!important;pointer-events:none}
+.wrap{z-index:2!important}
+.top,.auth-card,.streak-card,.install-card,.goal-card,.lang,.lesson,.card,.panel,.word-card,.grammar-card{background:linear-gradient(145deg,rgba(25,35,91,.88),rgba(9,15,46,.92))!important;border:1px solid var(--cosmic-border)!important;box-shadow:0 12px 35px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.06)!important;color:var(--cosmic-ink)}
+h1,h2,h3,p,label,.pill,.top span{color:inherit}
+button,.btn,.auth-btn{border-color:rgba(178,123,255,.65)!important}
+button:not(.secondary),.btn:not(.secondary),.auth-btn:not(.secondary){background:linear-gradient(100deg,#a83ee6,#4e5cf5)!important;color:#fff!important;box-shadow:0 5px 18px rgba(123,70,255,.2)}
+input,select,textarea{background:rgba(7,13,42,.8)!important;color:#f6f4ff!important;border:1px solid rgba(143,133,255,.5)!important}
+input::placeholder,textarea::placeholder{color:#a9b4e9!important}
+.cosmic-planet{position:fixed;z-index:0;right:-75px;top:105px;width:240px;height:240px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 25%,#ffe2ff 0%,#b7a0ff 10%,#6259d8 35%,#27388d 66%,#111842 82%);box-shadow:inset -25px -15px 35px #050a28,0 0 55px rgba(137,107,255,.45);opacity:.8}
+.cosmic-planet:before{content:"";position:absolute;width:330px;height:75px;border:7px solid rgba(230,197,255,.68);border-left-color:rgba(141,163,255,.7);border-bottom-color:rgba(141,163,255,.24);border-radius:50%;left:-47px;top:80px;transform:rotate(-23deg);box-shadow:0 0 14px rgba(183,139,255,.3)}
+.cosmic-planet:after{content:"";position:absolute;inset:18px;border-radius:50%;background:repeating-linear-gradient(165deg,transparent 0 22px,rgba(255,255,255,.09) 24px 27px,transparent 29px 45px);opacity:.7}
+.cosmic-controls{position:fixed;z-index:15;top:14px;right:14px;display:flex;gap:8px;align-items:center}
+.cosmic-toggle{border:1px solid rgba(201,168,255,.7)!important;background:rgba(12,19,57,.82)!important;color:#fff!important;border-radius:999px!important;padding:9px 13px!important;font-size:13px;backdrop-filter:blur(12px)}
+.mascot-helper{position:fixed;z-index:14;right:14px;bottom:14px;width:210px;display:flex;align-items:flex-end;gap:8px;pointer-events:none}
+.mascot-figure{font-size:48px;line-height:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+.mascot-bubble{flex:1;padding:10px 12px;border:1px solid rgba(190,137,255,.7);border-radius:15px 15px 4px 15px;background:rgba(10,17,53,.92);box-shadow:0 0 24px rgba(126,78,255,.22);font-size:12px;line-height:1.4;color:#f4eeff}
+.mascot-bubble strong{display:block;color:#ffc078;margin-bottom:3px}
+body.day-mode{background:radial-gradient(ellipse at 12% 4%,#fff0d4,transparent 35%),radial-gradient(ellipse at 80% 10%,#ffd4ee,transparent 33%),linear-gradient(145deg,#a7d9ff,#f4c8ef 55%,#ffd8d4)!important;color:#22264f}
+body.day-mode:before{opacity:.12}
+body.day-mode .cosmic-planet{filter:brightness(1.25);opacity:.6}
+body.day-mode .top,body.day-mode .auth-card,body.day-mode .streak-card,body.day-mode .install-card,body.day-mode .goal-card,body.day-mode .lang,body.day-mode .lesson,body.day-mode .card,body.day-mode .panel,body.day-mode .word-card,body.day-mode .grammar-card{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(244,237,255,.88))!important;color:#25264e!important;border-color:rgba(137,103,220,.34)!important}
+body.day-mode input,body.day-mode select,body.day-mode textarea{background:rgba(255,255,255,.92)!important;color:#25264e!important}
+body.day-mode .cosmic-toggle{background:rgba(255,255,255,.82)!important;color:#28234f!important}
+@keyframes cosmicTwinkle{from{opacity:.4}to{opacity:.85}}
+@media(max-width:600px){.cosmic-planet{width:145px;height:145px;right:-62px;top:80px;opacity:.45}.cosmic-planet:before{width:200px;height:43px;left:-29px;top:50px;border-width:4px}.cosmic-controls{top:8px;right:8px}.cosmic-toggle{padding:7px 9px!important;font-size:11px}.mascot-helper{right:8px;bottom:8px;width:160px}.mascot-figure{font-size:37px}.mascot-bubble{font-size:10px;padding:8px}.top{padding-right:110px!important}}
+@media(prefers-reduced-motion:reduce){body:before{animation:none}}
+
 </style>
 </head>
 <body>
 <div class="world-backdrop" aria-hidden="true"><div class="world-stars"></div><span class="world-flag f1">🇫🇷</span><span class="world-flag f2">🇯🇵</span><span class="world-flag f3">🇧🇷</span><span class="world-flag f4">🇬🇧</span><span class="world-landmark l1">🗼</span><span class="world-landmark l2">🗽</span><span class="world-landmark l3">🏯</span></div>
 
+
+
+<div class="cosmic-planet" aria-hidden="true"></div>
+<div class="cosmic-controls"><button class="cosmic-toggle" id="cosmicModeToggle" type="button" aria-label="Сменить день и ночь">🌙 Ночь</button></div>
+<div class="mascot-helper" aria-hidden="true"><div class="mascot-figure">👧🏻</div><div class="mascot-bubble"><strong>Клод 🤖</strong>Если понадобится подсказка, помогу разобраться — без готового ответа.</div></div>
 
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
@@ -534,5 +571,20 @@ function finishLesson(){
 }
 $('#search').addEventListener('input',render);render();renderStreak();renderLearning();updateLessonProgress();
 </script>
+
+<script>
+(function(){
+ const toggle=document.getElementById('cosmicModeToggle');
+ if(!toggle)return;
+ const saved=localStorage.getItem('artteacher-cosmic-mode');
+ if(saved==='day'){document.body.classList.add('day-mode');toggle.textContent='☀️ День';}
+ toggle.addEventListener('click',function(){
+  const day=document.body.classList.toggle('day-mode');
+  toggle.textContent=day?'☀️ День':'🌙 Ночь';
+  localStorage.setItem('artteacher-cosmic-mode',day?'day':'night');
+ });
+})();
+</script>
+
 </body>
 </html>
