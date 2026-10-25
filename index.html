@@ -45,7 +45,6 @@
 @media(max-width:620px){.install-grid{grid-template-columns:1fr}.install-section{padding:16px}}
 
 
-<style>
 /* Duolingo-inspired learning layer */
 .learning-dashboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
 .dash-item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px}
@@ -454,7 +453,7 @@ function showGrammar(topic){
  if(topic==='basics')body+='<p>'+d[1]+'</p><ul><li>'+d[2]+'</li><li>'+d[3]+'</li></ul>';
  if(topic==='travel')body+='<p>'+d[1]+'</p><ul><li>'+d[4]+'</li><li>'+d[5]+'</li><li>'+d[3]+'</li></ul>';
  if(topic==='dialogue')body+='<p><b>A:</b> Hello! / Здравствуйте!</p><p><b>B:</b> '+d[5]+'</p><p><b>A:</b> '+d[4]+'</p><p><b>B:</b> Thank you! / Спасибо!</p><p class="trans">Попробуй повторить реплики вслух, затем поменяй роли.</p>';
- if(topic==='practice')body+='<p>Вставь слово в пропуск:</p><p><b>'+d[6]+' ______</b></p><p>'+d[7]+'</p><input id="grammarAnswer" placeholder="Напиши недостающее слово" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin:8px 0"><button class="start" onclick="checkGrammar()">Проверить</button><div id="grammarFeedback" class="feedback"></div>';
+ if(topic==='practice')body+='<p>Какое слово означает «где?» на языке '+d[0]+'?</p><p class="trans">Пример: '+d[7]+'</p><input id="grammarAnswer" placeholder="Напиши слово «где»" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin:8px 0"><button class="start" onclick="checkGrammar()">Проверить</button><div id="grammarFeedback" class="feedback"></div>';
  document.getElementById('grammarContent').innerHTML=body;
 }
 function checkTenseAnswer(button,isCorrect){const out=document.getElementById('tenseFeedback');if(!out)return;out.textContent=isCorrect?'Верно! “Right now” показывает, что действие происходит сейчас. ⭐':'Не совсем. Ищи форму am/is/are + глагол-ing.';out.className='feedback '+(isCorrect?'good':'bad');} 
