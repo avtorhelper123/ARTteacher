@@ -171,6 +171,64 @@ body.day-mode .top,body.day-mode .auth-card,body.day-mode .streak-card,body.day-
 #settingsPanel{scroll-margin-top:20px}
 @media(max-width:700px){.wrap{width:calc(100% - 18px)!important}.app-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:7px}.app-nav a{flex-direction:column;gap:3px;font-size:11px;padding:7px 2px;min-height:48px}.language-window{padding:12px}.language-window-head{align-items:flex-start}.hero:after{width:76px;height:76px;right:12px;top:18px}.top{padding-right:0!important;padding-top:45px!important}.cosmic-planet{width:120px!important;height:120px!important;right:0!important;top:90px!important;opacity:.2!important}}
 
+
+/* ARTteacher visual refresh — refined pastel learning workspace */
+:root{--ink:#242038;--muted:#77738b;--purple:#7964d8;--line:#e9e5f4;--paper:#fff;--bg:#f8f7ff}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:radial-gradient(ellipse at 10% 0%,#f0e7ff 0,transparent 34%),radial-gradient(ellipse at 95% 35%,#e4f1ff 0,transparent 30%),#f8f8fd;color:var(--ink);letter-spacing:-.01em}
+.world-backdrop{opacity:.25;pointer-events:none}
+.wrap{max-width:1180px;padding:26px clamp(14px,3vw,32px) 34px}
+.top{padding:12px 2px 18px}
+.brand{font-size:1.32rem;letter-spacing:-.04em}
+.logo{border-radius:14px;box-shadow:0 7px 18px #a58cf044}
+.pill{border:1px solid #e6def9;background:#fff;color:#6653a8}
+.app-nav{position:sticky;top:10px;z-index:50;display:flex;align-items:center;gap:5px;padding:8px;margin:0 0 18px;border:1px solid #e9e6f4;border-radius:18px;background:#ffffffdf;backdrop-filter:blur(18px);box-shadow:0 8px 28px #37305b0c;overflow-x:auto;scrollbar-width:none}
+.app-nav::-webkit-scrollbar{display:none}
+.app-nav a{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;text-decoration:none;padding:10px 13px;border-radius:12px;color:#68647c;font-size:.88rem;font-weight:750;transition:background .18s,color .18s}
+.app-nav a:hover,.app-nav a:focus-visible{background:#f0ebff;color:#604bb9;outline:none}
+.hero{margin:18px 0 24px;padding:clamp(25px,5vw,58px);border:1px solid #ffffffc9;border-radius:30px;background:linear-gradient(115deg,#f8e8fa 0%,#eeeaff 55%,#e4f2ff 100%);box-shadow:0 18px 50px #65558b0e}
+.hero:after{color:#ffffffa6;right:5%;top:0}
+.hero h1{letter-spacing:-.055em;max-width:680px}
+.hero p{font-size:1.04rem;line-height:1.75;color:#625d76}
+.cta,.primary-next{background:linear-gradient(135deg,#7662d4,#9b7be6);box-shadow:0 7px 16px #8269d62b;transition:transform .16s,box-shadow .16s}
+.cta:hover,.primary-next:hover{transform:translateY(-1px);box-shadow:0 10px 22px #8269d633}
+.stats{gap:9px}.stat{background:#ffffffc9;border-color:#ffffff;font-weight:650}
+.section-head{margin:26px 0 16px}
+.section-head h2,.language-window-head h2{letter-spacing:-.035em}
+.language-window{padding:clamp(16px,3vw,28px);margin:22px 0;border:1px solid #e9e5f4;border-radius:26px;background:#ffffffc9;box-shadow:0 12px 35px #4d3a7308}
+.language-window-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.language-window-head h2{font-size:1.7rem;margin:6px 0}
+.language-window-head p{margin:0;color:var(--muted)}
+.planet-badge{padding:10px 13px;border-radius:14px;background:#f1ecff;color:#6b55bb;font-weight:800;white-space:nowrap}
+.languages{grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:15px}
+.lang{border-color:#ece8f5;border-radius:21px;padding:19px;box-shadow:0 5px 20px #49316b07}
+.lang:hover{border-color:#d8cef6;box-shadow:0 13px 30px #49316b12}
+.flag{background:linear-gradient(145deg,#f6efff,#edf4ff);border:1px solid #f0eafb}
+.progress{height:8px;background:#f0eef7}.progress span{background:linear-gradient(90deg,#eaa9d9,#8c78e8)}
+.learning-dashboard{gap:13px;margin:18px 0}
+.dash-item,.daily-goal,.auth-card,.lesson,.install-section{border:1px solid #e9e6f3;box-shadow:0 8px 28px #3d315b08}
+.dash-item{border-radius:18px;padding:16px;background:#fff}
+.daily-goal{border-radius:20px;background:linear-gradient(130deg,#fff,#fbf8ff)}
+.streak-card{border:1px solid #ffe4c5;box-shadow:0 10px 28px #7c54200b}
+.lesson{padding:clamp(17px,3vw,27px);border-radius:23px}
+.lesson h2{letter-spacing:-.025em}
+.answer{background:#fbfaff;border-color:#e9e3f7;border-radius:14px}
+.answer:hover:not(:disabled){background:#f3efff;border-color:#b8a8ed}
+.start{transition:background .16s,transform .16s}.start:hover{background:#e9dfff;transform:translateY(-1px)}
+.search,.auth-fields input,select,input[type=text],input[type=email],input[type=password]{border-color:#e4dfef;border-radius:13px}
+.search:focus,.auth-fields input:focus{border-color:#a392e7;box-shadow:0 0 0 3px #a392e71c;outline:none}
+.install-section{margin:30px 0 18px;padding:clamp(18px,3vw,30px);border-radius:26px;background:linear-gradient(135deg,#fff 0%,#f7f2ff 58%,#eef7ff 100%)}
+.install-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.install-card{border-color:#eae5f5;border-radius:19px;transition:transform .18s,box-shadow .18s}
+.install-card:hover{transform:translateY(-2px);box-shadow:0 12px 25px #47346b0d}
+.install-btn{border:0;text-decoration:none;cursor:pointer;box-shadow:0 5px 13px #8b70d91c}
+.install-btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #a493eb;outline-offset:3px}
+.native-note{background:#fff8e9;border:1px solid #f8e9c9;border-radius:13px;line-height:1.6}
+.foot{padding:36px 10px 20px}
+@media(max-width:760px){.install-grid{grid-template-columns:1fr}.app-nav{top:6px}.app-nav a{padding:10px 12px}.app-nav a span{font-size:.83rem}.language-window-head{align-items:flex-start}.planet-badge{font-size:.8rem}}
+@media(max-width:480px){.wrap{padding:12px}.top{align-items:flex-start;flex-direction:column;gap:8px}.top .pill{font-size:.78rem}.app-nav{margin-bottom:13px}.app-nav a{gap:5px;padding:9px 10px;font-size:.83rem}.hero{margin-top:13px;border-radius:23px}.hero:after{right:-12%;top:34%;font-size:100px}.language-window-head{display:block}.planet-badge{display:inline-flex;margin-top:12px}.learning-dashboard{gap:7px}.dash-item{padding:11px 8px}.install-section{border-radius:21px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
 </style>
 </head>
 <body>
