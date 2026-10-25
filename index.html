@@ -64,7 +64,7 @@
 
 /* Animated world-travel background */
 body{position:relative;isolation:isolate}
-.world-backdrop{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 75% 35%,#dceeff66 0,transparent 42%),radial-gradient(ellipse at 15% 80%,#f2dfff55 0,transparent 40%)}
+.world-backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 75% 35%,#dceeff66 0,transparent 42%),radial-gradient(ellipse at 15% 80%,#f2dfff55 0,transparent 40%)}
 .world-globe{position:absolute;width:min(72vw,650px);aspect-ratio:1;right:-10%;top:10%;border-radius:50%;opacity:.23;filter:saturate(1.15);box-shadow:inset -35px -20px 70px #101b4e55,0 0 70px #7aaeff55;animation:globeFloat 12s ease-in-out infinite}
 .world-globe:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff9 0,transparent 12%),radial-gradient(circle at 35% 35%,#69d9a0 0 8%,transparent 9%),radial-gradient(ellipse at 55% 26%,#5fd4a2 0 10%,transparent 11%),radial-gradient(ellipse at 65% 48%,#6acb92 0 13%,transparent 14%),radial-gradient(ellipse at 35% 62%,#5acb9a 0 11%,transparent 12%),radial-gradient(circle at 50% 50%,#5bb9ff,#1656a7 64%,#10265f 78%,#061333 100%);box-shadow:inset -28px -18px 50px #06112d99,inset 8px 8px 25px #d8f5ff77}
 .world-globe:after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(90deg,transparent 0 23%,#b9edff55 24%,transparent 25% 48%);animation:earthSpin 18s linear infinite;mask-image:radial-gradient(circle,#000 58%,transparent 70%)}
@@ -79,7 +79,7 @@ body{position:relative;isolation:isolate}
 @keyframes flagDrift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(8deg)}}
 @keyframes landmarkFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.06)}}
 @keyframes starsMove{from{background-position:0 0,32px 48px}to{background-position:83px 166px,159px 302px}}
-.wrap{position:relative;z-index:0}
+.wrap{position:relative;z-index:1}
 @media(max-width:600px){.world-globe{width:95vw;right:-38%;top:19%;opacity:.16}.world-landmark{opacity:.48}.world-flag{opacity:.72}}
 @media(prefers-reduced-motion:reduce){.world-globe,.world-globe:after,.world-orbit,.world-flag,.world-landmark,.world-stars{animation:none!important}}
 
@@ -88,31 +88,7 @@ body{position:relative;isolation:isolate}
 <body>
 <div class="world-backdrop" aria-hidden="true"><div class="world-stars"></div><div class="world-globe"><div class="world-orbit"></div></div><span class="world-flag f1">🇫🇷</span><span class="world-flag f2">🇯🇵</span><span class="world-flag f3">🇧🇷</span><span class="world-flag f4">🇬🇧</span><span class="world-landmark l1">🗼</span><span class="world-landmark l2">🗽</span><span class="world-landmark l3">🏯</span></div>
 
-<script>
-(function(){
-function initRescue(){
- const status=document.getElementById('rescueStatus');
- const setStatus=(t)=>{if(status)status.textContent=t};
- if(!window.supabase||!window.supabase.createClient){setStatus('Модуль регистрации не загрузился. Проверь интернет и обнови страницу.');return}
- const client=window.supabase.createClient('https://ltvrorqeajgbwoswrtcu.supabase.co','sb_publishable_h251o80w1Bit9uwm-QeU4A_lI5vvO2f');
- async function act(kind){
-  const email=document.getElementById('rescueEmail').value.trim(),password=document.getElementById('rescuePassword').value;
-  if(!email||!password){setStatus('Введи электронную почту и пароль.');return}
-  if(password.length<8){setStatus('Пароль должен содержать минимум 8 символов.');return}
-  setStatus('Подключаемся…');
-  try{
-   const r=kind==='register'?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});
-   if(r.error)throw r.error;
-   if(kind==='register'&&!r.data.session)setStatus('Аккаунт создан. Проверь почту и подтверди адрес, затем войди.');
-   else setStatus('Вход выполнен: '+(r.data.user?.email||email));
-  }catch(e){setStatus(e.message||'Не удалось выполнить запрос.')}
- }
- document.getElementById('rescueRegister').addEventListener('click',()=>act('register'));
- document.getElementById('rescueLogin').addEventListener('click',()=>act('login'));
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initRescue,{once:true});else initRescue();
-})();
-</script>
+
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
 
