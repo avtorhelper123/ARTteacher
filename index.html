@@ -110,6 +110,29 @@ body.day-mode .cosmic-toggle{background:rgba(255,255,255,.82)!important;color:#2
 @media(max-width:600px){.cosmic-planet{width:145px;height:145px;right:-62px;top:80px;opacity:.45}.cosmic-planet:before{width:200px;height:43px;left:-29px;top:50px;border-width:4px}.cosmic-controls{top:8px;right:8px}.cosmic-toggle{padding:7px 9px!important;font-size:11px}.mascot-helper{right:8px;bottom:8px;width:160px}.mascot-figure{font-size:37px}.mascot-bubble{font-size:10px;padding:8px}.top{padding-right:110px!important}}
 @media(prefers-reduced-motion:reduce){body:before{animation:none}}
 
+
+/* Readability and layout correction */
+body{background:#080d25!important;color:#f4f5ff!important}
+body:before{opacity:.42!important;background-size:260px 220px!important;animation:cosmicTwinkle 7s ease-in-out infinite alternate}
+.world-backdrop{opacity:.10!important}
+.cosmic-planet{width:174px!important;height:174px!important;right:24px!important;top:92px!important;opacity:.82!important;filter:none!important;background:radial-gradient(circle at 29% 24%,#c7d7ff 0%,#6d79df 24%,#3848a2 56%,#151d55 82%)!important;box-shadow:inset -18px -14px 24px #05091f,0 0 28px rgba(110,119,255,.25)!important}
+.cosmic-planet:before{display:none!important}
+.cosmic-planet:after{inset:0!important;background:repeating-linear-gradient(155deg,transparent 0 19px,rgba(210,221,255,.10) 20px 22px,transparent 23px 37px)!important;opacity:.35!important}
+.top,.auth-card,.streak-card,.install-card,.goal-card,.lang,.lesson,.card,.panel,.word-card,.grammar-card{background:rgba(8,15,45,.96)!important;color:#f5f6ff!important;border-color:rgba(139,125,255,.42)!important;backdrop-filter:none!important;box-shadow:0 8px 24px rgba(0,0,0,.18)!important}
+.auth-card p,.auth-status,.streak-label,.streak-days,.lesson p,.lang p,.card p,.panel p,.word-card p,.grammar-card p,.top .pill{color:#d6ddff!important}
+input,select,textarea{background:#080f2c!important;color:#fff!important;border-color:#6573c8!important}
+input::placeholder,textarea::placeholder{color:#c0c9ef!important;opacity:1!important}
+button,.btn,.auth-btn{color:#fff!important}
+.cosmic-controls{position:absolute!important;top:12px!important;right:12px!important}
+.cosmic-toggle{background:#171e4a!important;color:#fff!important;box-shadow:0 3px 12px rgba(0,0,0,.22)!important}
+.wrap{width:min(100% - 28px,1120px)!important;margin:0 auto!important}
+.top{padding-right:125px!important}
+body.day-mode{background:linear-gradient(145deg,#cce7ff,#f4d9f6 55%,#fff0d5)!important;color:#20274f!important}
+body.day-mode .top,body.day-mode .auth-card,body.day-mode .streak-card,body.day-mode .install-card,body.day-mode .goal-card,body.day-mode .lang,body.day-mode .lesson,body.day-mode .card,body.day-mode .panel,body.day-mode .word-card,body.day-mode .grammar-card{background:rgba(255,255,255,.97)!important;color:#20274f!important;border-color:rgba(105,91,190,.3)!important}
+body.day-mode .auth-card p,body.day-mode .auth-status,body.day-mode .streak-label,body.day-mode .streak-days,body.day-mode .lesson p,body.day-mode .lang p,body.day-mode .card p,body.day-mode .panel p,body.day-mode .word-card p,body.day-mode .grammar-card p,body.day-mode .top .pill{color:#343b6d!important}
+body.day-mode input,body.day-mode select,body.day-mode textarea{background:#fff!important;color:#20274f!important}
+@media(max-width:600px){.cosmic-planet{width:94px!important;height:94px!important;right:12px!important;top:74px!important;opacity:.42!important}.cosmic-controls{top:8px!important;right:8px!important}.top{padding-right:0!important;padding-top:50px!important}.wrap{width:calc(100% - 20px)!important}}
+
 </style>
 </head>
 <body>
@@ -119,7 +142,7 @@ body.day-mode .cosmic-toggle{background:rgba(255,255,255,.82)!important;color:#2
 
 <div class="cosmic-planet" aria-hidden="true"></div>
 <div class="cosmic-controls"><button class="cosmic-toggle" id="cosmicModeToggle" type="button" aria-label="Сменить день и ночь">🌙 Ночь</button></div>
-<div class="mascot-helper" aria-hidden="true"><div class="mascot-figure">👧🏻</div><div class="mascot-bubble"><strong>Клод 🤖</strong>Если понадобится подсказка, помогу разобраться — без готового ответа.</div></div>
+
 
 <div class="wrap">
 <header class="top"><div class="brand"><div class="logo">A</div><span>ARTteacher</span></div><span class="pill">Маленькие шаги — большой прогресс ✨</span></header>
@@ -135,7 +158,8 @@ body.day-mode .cosmic-toggle{background:rgba(255,255,255,.82)!important;color:#2
   <div id="authSignedIn" hidden><div class="auth-account"><span class="auth-email" id="authUserEmail"></span><button class="auth-btn secondary" id="authLogout" type="button">Выйти</button></div></div>
   <div class="auth-status" id="authStatus" role="status" aria-live="polite">Подключение аккаунтов загружается…</div>
 </section>
-\n<section class="streak-card" aria-label="Серия занятий">
+
+<section class="streak-card" aria-label="Серия занятий">
   <div class="streak-header">
     <div><div class="streak-label">ТВОЯ СЕРИЯ</div><div class="streak-number">🔥 <span id="streakCurrent">0</span> <span class="streak-days">дн.</span></div></div>
     <div class="streak-record">Рекорд: <strong id="streakBest">0</strong> 🔥</div>
