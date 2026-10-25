@@ -219,26 +219,33 @@ body.day-mode .top,body.day-mode .auth-card,body.day-mode .streak-card,body.day-
 
 
 <section class="install-section" id="installApp">
-  <div class="eyebrow">📲 Скачать приложение</div>
-  <h2>ARTteacher на твоём устройстве</h2>
-  <p>Скачай установочный файл и пользуйся ARTteacher как отдельным приложением.</p>
+  <div class="eyebrow">📲 Установить ARTteacher</div>
+  <h2>ARTteacher всегда под рукой</h2>
+  <p>Выбери установку на устройство. Веб-версия сохраняет прогресс на этом устройстве; для синхронизации между устройствами понадобится аккаунт и серверная настройка.</p>
   <div class="install-grid">
+    <article class="install-card">
+      <div class="install-icon">📱</div>
+      <h3>Android — установить сайт</h3>
+      <p>Добавь ARTteacher на главный экран как приложение. Это самый быстрый вариант, не требующий APK.</p>
+      <button class="install-btn" id="installPwaButton" type="button">Установить ARTteacher</button>
+      <div class="install-status" id="pwaInstallStatus">Если кнопка установки недоступна, открой меню браузера и выбери «Установить приложение» или «Добавить на главный экран».</div>
+    </article>
     <article class="install-card">
       <div class="install-icon">🤖</div>
       <h3>Android — APK</h3>
-      <p>Установочный файл для телефонов и планшетов Android.</p>
-      <a class="install-btn" href="https://github.com/avtorhelper123/ARTteacher/releases/latest/download/artteacher.apk">Скачать APK</a>
-      <div class="install-status">После загрузки открой APK. Android может попросить подтвердить установку.</div>
+      <p>Нативный установочный файл, если он опубликован в разделе релизов проекта.</p>
+      <a class="install-btn secondary" href="https://github.com/avtorhelper123/ARTteacher/releases/latest" target="_blank" rel="noopener noreferrer">Проверить APK в релизах ↗</a>
+      <div class="install-status">Если в последнем релизе нет файла .apk, готовая Android-сборка пока не опубликована.</div>
     </article>
     <article class="install-card">
       <div class="install-icon">🍎</div>
-      <h3>iPhone / iPad — IPA</h3>
-      <p>Сборка для iOS. Файл без подписи нельзя просто открыть как обычное приложение.</p>
-      <a class="install-btn secondary" href="https://github.com/avtorhelper123/ARTteacher/releases/latest/download/artteacher.ipa">Скачать IPA</a>
-      <div class="install-status">Для установки потребуется подходящий способ установки и подпись Apple ID.</div>
+      <h3>iPhone / iPad</h3>
+      <p>Можно добавить веб-версию на главный экран через Safari. Это не IPA, но сайт будет открываться отдельным значком.</p>
+      <button class="install-btn secondary" id="iosInstallHelp" type="button">Как добавить на экран</button>
+      <div class="install-status" id="iosInstallStatus">Для настоящего IPA нужна отдельная iOS-сборка и подпись Apple; готовый IPA пока не подтверждён.</div>
     </article>
   </div>
-  <div class="native-note"><b>Важно:</b> ссылки станут доступны после успешного завершения первой сборки в GitHub Actions. APK/IPA создаются автоматически при обновлении сайта или вручную через запуск workflow.</div>
+  <div class="native-note"><b>Важно:</b> APK и IPA нельзя считать готовыми, пока установочные файлы реально не опубликованы. Сейчас сайт поддерживает установку как PWA на совместимых устройствах; китайский словарь HSK загружается из файлов проекта/источника данных.</div>
 </section>
 
 <section class="hero" id="homePanel"><div class="eyebrow">Твоя языковая студия</div><h1>Новый язык.<br>Новые возможности.</h1><p>Выбирай язык, изучай полезные слова и проверяй себя в коротких интерактивных заданиях. Учись в своём темпе.</p><button class="cta" onclick="document.querySelector('#languages-title').scrollIntoView({behavior:'smooth'})">Выбрать язык ↓</button><div class="stats"><div class="stat">🌍 <b>12</b> языков</div><div class="stat">🧠 <b id="learned">0</b> правильных ответов</div><div class="stat">📚 <b id="streak">0</b> слов в прогрессе</div></div></section>
@@ -659,5 +666,41 @@ $('#search').addEventListener('input',render);render();renderStreak();renderLear
 })();
 </script>
 
+
+<script>
+(function(){
+  let deferredInstallPrompt = null;
+  const installButton = document.getElementById('installPwaButton');
+  const installStatus = document.getElementById('pwaInstallStatus');
+  const iosButton = document.getElementById('iosInstallHelp');
+  const iosStatus = document.getElementById('iosInstallStatus');
+  if (!installButton || !installStatus) return;
+  window.addEventListener('beforeinstallprompt', function(event){
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    installButton.disabled = false;
+    installStatus.textContent = 'Установка доступна прямо сейчас — нажми кнопку.';
+  });
+  window.addEventListener('appinstalled', function(){
+    installStatus.textContent = 'ARTteacher установлен! Ищи значок на главном экране.';
+    installButton.textContent = 'Установлено ✓';
+    installButton.disabled = true;
+    deferredInstallPrompt = null;
+  });
+  installButton.addEventListener('click', async function(){
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      const result = await deferredInstallPrompt.userChoice;
+      installStatus.textContent = result && result.outcome === 'accepted' ? 'Запрос на установку принят.' : 'Установка отменена. Её можно запустить позже из меню браузера.';
+      deferredInstallPrompt = null;
+      return;
+    }
+    installStatus.textContent = 'В Chrome на Android открой меню ⋮ и выбери «Установить приложение» или «Добавить на главный экран». На iPhone используй Safari → «Поделиться» → «На экран Домой».';
+  });
+  if (iosButton && iosStatus) iosButton.addEventListener('click', function(){
+    iosStatus.textContent = 'На iPhone: открой этот сайт в Safari → нажми «Поделиться» → «На экран Домой» → «Добавить». Это веб-приложение, не файл IPA.';
+  });
+})();
+</script>
 </body>
 </html>
